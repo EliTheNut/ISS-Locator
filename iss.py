@@ -25,14 +25,16 @@ def issLocate():
 def issPass(location):
     issPassData = requests.get(
         "http://api.open-notify.org/iss-pass.json", params={"lat": location[0], "lon": location[1]})
-    print(time.ctime(issPassData.json().get("response")[0].get("risetime")))
+    print("\nISS will pass over ", location, " on ", time.ctime(
+        issPassData.json().get("response")[0].get("risetime")))
 
 
 def main():
+    astros()
+    issLocate()
+    issPass([39.791000, -86.148003])
     pass
 
-
-issPass([39.791000, -86.148003])
 
 if __name__ == '__main__':
     main()
